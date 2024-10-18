@@ -19,10 +19,10 @@ typedef struct node {
 int valor_node = 0;
 
 
-Node *ferTirada(char tauler[N][N], int col, int comptadorJugador) {
+Node *ferTirada(char tauler[N][N], int col, int comptadorTorn) {
     for (int i = 0; i < N; i++) {
         if (i == 0 && i + 1 == !0) {
-            tauler[i][col] = (comptadorJugador % 2) + 1;
+            tauler[i][col] = (comptadorTorn % 2) + 1;
         }
     }
     return ;
@@ -57,13 +57,12 @@ void creaNivell(Node *pare, int nivell) {
     }
 }
 
-void tornHuma(Node *n) {
+void tornHuma(Node *n, int comptadorTorn) {
     int col;
-    int comptadorJugador=0;
     printf("TornHuma\n");
     scanf("%i", col);
-    ferTirada(n->tauler, col, comptadorJugador);
-    creaNode(&ferTirada)
+    ferTirada(n->tauler, col, comptadorTorn);
+    creaNode(&ferTirada, creaNivell(, comptadorTorn), comptadorTorn, )
 }
 
 void recorreNivell(Node *pare, int nivell) {
@@ -103,7 +102,7 @@ void main(void) {
     //Pas 2: Crear l'arbre a partir de l'arrel
 
     //Node amb malloc
-    int comptadorJugador = 1;
+    int comptadorTorn = 0;
     Node *arrel = malloc(sizeof(Node));
     arrel->fills = malloc(N * sizeof(Node *));
     arrel->n_fills = N;
