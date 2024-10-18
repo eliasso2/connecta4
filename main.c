@@ -11,7 +11,7 @@
 
 typedef struct node {
     struct node **fills;
-    int n_fills; //tamany de l�array din�mic
+    int n_fills; //tamany de l'array dinàmic
     char tauler[N][N];
     double valor;
 } Node;
@@ -19,23 +19,13 @@ typedef struct node {
 int valor_node = 0;
 
 
-void ferTirada(char tauler[N][N], int col, int comptadorJugador) {
-    //1-Determinar la fila per gravetat
+Node *ferTirada(char tauler[N][N], int col, int comptadorJugador) {
     for (int i = 0; i < N; i++) {
         if (i == 0 && i + 1 == !0) {
             tauler[i][col] = (comptadorJugador % 2) + 1;
         }
     }
-    //2-posar la fitxa a la [fila][col] del tauler
-}
-
-void tornHuma() {
-    int col;
-    int comptadorJugador;
-    char tauler[N][N];
-    printf("TornHuma\n");
-    scanf("%i", col);
-    //ferTirada(col, comptadorJugador)
+    return ;
 }
 
 int calculaNumFills(char tauler[N][N]) {
@@ -65,6 +55,15 @@ void creaNivell(Node *pare, int nivell) {
     for (int i = 0; i < pare->n_fills; i++) {
         pare->fills[i] = creaNode(pare, nivell, i);
     }
+}
+
+void tornHuma(Node *n) {
+    int col;
+    int comptadorJugador=0;
+    printf("TornHuma\n");
+    scanf("%i", col);
+    ferTirada(n->tauler, col, comptadorJugador);
+    creaNode(&ferTirada)
 }
 
 void recorreNivell(Node *pare, int nivell) {
