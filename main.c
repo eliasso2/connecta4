@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 8
+#define N 2
 
 typedef struct node {
     struct node **fills;
     int n_fills; //tamany de l'array dinàmic
-    char tauler[N][N];
+    int tauler[N][N];
     double valor;
 } Node;
 
@@ -46,7 +46,7 @@ Node *creaNode(Node *pare, int nivell, int numDeFill) {
 
 Node *ferTirada(Node *n, int col, int comptadorTorn) {
     for (int i = 0; i < N; i++) {
-        if (n->tauler[0][col] ==! 0) {
+        if (n->tauler[0][col] != 0) {
             printf("\nLa columna està plena!\n");
             break;
         }
