@@ -44,7 +44,7 @@ Node *creaNode(Node *pare, int nivell, int numDeFill) {
     return p;
 }
 
-Node *ferTirada(Node *n, int col, int comptadorTorn) {
+Node ferTirada(Node *n, int col, int comptadorTorn) {
     for (int i = 0; i < N; i++) {
         if (n->tauler[0][col] ==! 0) {
             printf("\nLa columna està plena!\n");
@@ -55,7 +55,7 @@ Node *ferTirada(Node *n, int col, int comptadorTorn) {
             break;
         }
     }
-    return creaNode(n, 2, calculaNumFills(&n->tauler));
+    return *creaNode(n, 2, calculaNumFills(&n->tauler));
 }
 
 //Quan creem un nivell, suposem que el node pare
@@ -150,10 +150,10 @@ char inicialitzaTauler(Node *n) {
 }
 
 
-void imprimirTauler(Node *n) {
+void imprimirTauler(Node n) {
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
-            printf(" %i ", n->tauler[i][j]);
+            printf(" %i ", n.tauler[i][j]);
         } printf("\n");
     }
 }
@@ -171,7 +171,7 @@ void main(void) {
 
     crearArbre(arrel);
     //recorreArbreRecursiu(arrel,0);
-    imprimirTauler(&arrel);
+    imprimirTauler(*arrel);
     //tornHuma();
     //alternativa amb Node sense malloc
     /*Node arrel;
@@ -182,11 +182,10 @@ void main(void) {
     crearArbre(&arrel);
     recorreArbreRecursiu(&arrel,0);*/
     do{
-        //tornHuma(arrel, comptadorTorn);
         printf("És el torn del jugador %i\nIntroduïu columna per continuar\n",comptadorTorn % 2 + 1);
         scanf("%i", &col);
         arrel = ferTirada(arrel, col, comptadorTorn);
         imprimirTauler(ferTirada(arrel, col, comptadorTorn));
         comptadorTorn++;
-    } while(checkVictoria(&arrel) ==! 1);
+    } while(checkVictoria(&arrel) != 1);
 }
