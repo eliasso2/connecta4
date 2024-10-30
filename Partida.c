@@ -4,9 +4,9 @@
 
 int esColumnaPlena(int col, int tauler[N][N]) {
     if (tauler[0][col] != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 int trobaFila(int col, int tauler[N][N]) {
@@ -39,45 +39,84 @@ void ferTirada(int tauler[N][N], int torn) {
 
     int fila = trobaFila(col, tauler);
     tauler[fila][col] = torn;
+    esVictoria(tauler, col, fila, torn);
 }
 
-int eskVictoria(Node *n) {
-    //es podria passar la tirada cada torn i comprovar que la tirada no guanyés en comptes de comprovar tot el tauler cada torn
-    //cal comprovar que les columnes i les files estiguin bé però la idea és aquesta
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            if (n->tauler[i][j] == !0) {
-                int candidat = n->tauler[i][j];
-                if (n->tauler[i + 1][j] == candidat) {
-                    //comprovació horitzontal
-                    if (n->tauler[i + 2][j] == candidat) {
-                        if (n->tauler[i + 3][j] == candidat) {
-                            if (n->tauler[i + 4][j] == candidat) {
-                                return 1;
-                            }
-                        }
-                    }
-                } else if (n->tauler[i][j - 1] == candidat) {
-                    //comprovació vertical
-                    if (n->tauler[i][j - 2] == candidat) {
-                        if (n->tauler[i][j - 3] == candidat) {
-                            if (n->tauler[i][j - 4] == candidat) {
-                                return 1;
-                            }
-                        }
-                    }
-                } else if (n->tauler[i - 1][j - 1] == candidat) {
-                    if (n->tauler[i - 2][j - 2] == candidat) {
-                        if (n->tauler[i - 3][j - 3] == candidat) {
-                            if (n->tauler[i - 4][j - 4] == candidat) {
-                                return 1;
-                            }
-                        }
-                    }
-                }
-            } else return 0;
+int esConnectaVertical(int tauler[N][N], int col, int fila, int jugador) {
+    for (int i = 1; i < 4; i++) {
+        if (fila + i >= N || tauler[fila + i][col] != jugador) {
+            return FALSE;
         }
     }
+    return TRUE;
+}
+
+int esConnectaHoritzontalDreta(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col + i >= N || tauler[fila][col + i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esConnectaHoritzontalEsquerra(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col - i < 0 || tauler[fila][col - i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esConnectaDiagonalSupDreta(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col + i >= N || fila - i < 0 || tauler[fila - i][col + i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esConnectaDiagonalSupEsquerra(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col - i < 0 || fila - i < 0 || tauler[fila - i][col - i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esConnectaDiagonalInfDreta(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col + i >= N || fila + i >= N || tauler[fila + i][col + i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esConnectaDiagonalInfEsquerra(int tauler[N][N], int col, int fila, int jugador) {
+    for(int i = 1; i < 4; i++) {
+        if(col - i < 0 || fila + i >= N || tauler[fila + i][col - i] != jugador) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+int esVictoria(int tauler[N][N], int col, int fila, int jugador) {
+    if (esConnectaVertical(tauler, col, fila, jugador) ||
+        esConnectaHoritzontalDreta(tauler, col, fila, jugador) ||
+        esConnectaHoritzontalEsquerra(tauler, col, fila, jugador) ||
+        esConnectaDiagonalSupDreta(tauler, col, fila, jugador) ||
+        esConnectaDiagonalSupEsquerra(tauler, col, fila, jugador) ||
+        esConnectaDiagonalInfDreta(tauler, col, fila, jugador) ||
+        esConnectaDiagonalInfEsquerra(tauler, col, fila, jugador)) {
+        printf("Victoria del jugador %i\n", jugador);
+        return TRUE;
+    }
+    return FALSE;
 }
 
 char inicialitzaTauler(Node *n) {

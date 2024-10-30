@@ -20,6 +20,6 @@ void tests() {
 }
 
 void main(void) {
-    iniciaPartida();
-    //tests();
+    //iniciaPartida();
+    tests();
 }
