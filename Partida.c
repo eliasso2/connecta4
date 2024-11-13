@@ -29,7 +29,8 @@ int canviaTorn(int torn) {
     return (torn == JUGADOR1) ? JUGADOR2 : JUGADOR1;
 }
 
-void ferTirada(int tauler[N][N], int torn) {
+
+/*void ferTirada(int tauler[N][N], int torn) {
     int col = demanaTirada();
 
     while (col < 0 || col >= N || esColumnaPlena(col, tauler)) {
@@ -40,6 +41,19 @@ void ferTirada(int tauler[N][N], int torn) {
     int fila = trobaFila(col, tauler);
     tauler[fila][col] = torn;
     esVictoria(tauler, col, fila, torn);
+}*/
+
+int ferTirada(int tauler[N][N], int torn) {
+    int col = demanaTirada();
+
+    while (col < 0 || col >= N || esColumnaPlena(col, tauler)) {
+        printf("ERROR: Columna invàlida o plena\n");
+        col = demanaTirada();
+    }
+
+    int fila = trobaFila(col, tauler);
+    tauler[fila][col] = torn;
+    return esVictoria(tauler, col, fila, torn);
 }
 
 int esConnectaVertical(int tauler[N][N], int col, int fila, int jugador) {
@@ -113,7 +127,8 @@ int esVictoria(int tauler[N][N], int col, int fila, int jugador) {
         esConnectaDiagonalSupEsquerra(tauler, col, fila, jugador) ||
         esConnectaDiagonalInfDreta(tauler, col, fila, jugador) ||
         esConnectaDiagonalInfEsquerra(tauler, col, fila, jugador)) {
-        printf("Victoria del jugador %i\n", jugador);
+        dibuixaTauler(tauler);
+        printf("Victoria del jugador %i!\n", jugador);
         return TRUE;
     }
     return FALSE;

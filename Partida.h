@@ -8,7 +8,7 @@
 
 int esColumnaPlena(int col, int tauler[N][N]);
 
-void ferTirada(int tauler[N][N], int torn);
+int ferTirada(int tauler[N][N], int torn);
 
 int esVictoria(int tauler[N][N], int col, int fila, int jugador);
 
