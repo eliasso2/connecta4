@@ -9,7 +9,7 @@ typedef struct node {
     double valor;
 } Node;
 
-int calculaNumFills(char tauler[N][N]);
+int calculaNumFills(int tauler[N][N]);
 
 Node *creaNode(Node *pare, int nivell, int numDeFill);
 
@@ -22,3 +22,9 @@ void crearArbre(Node *arrel);
 void recorreArbre(Node *arrel);
 
 void recorreArbreRecursiu(Node *p, int nivell);
+
+int colRand(int tauler[N][N]);
+
+int ferTiradaCPU(int tauler[N][N], int torn);
+
+void copiaTauler(int plantilla[N][N], int pacient[N][N]);

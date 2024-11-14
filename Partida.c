@@ -20,7 +20,7 @@ int trobaFila(int col, int tauler[N][N]) {
 
 int demanaTirada() {
     int col;
-    printf("Introdueix la columna on vols fer la tirada\n");
+    printf("\nIntrodueix la columna on vols fer la tirada\n");
     scanf("%i", &col);
     return col;
 }
@@ -28,20 +28,6 @@ int demanaTirada() {
 int canviaTorn(int torn) {
     return (torn == JUGADOR1) ? JUGADOR2 : JUGADOR1;
 }
-
-
-/*void ferTirada(int tauler[N][N], int torn) {
-    int col = demanaTirada();
-
-    while (col < 0 || col >= N || esColumnaPlena(col, tauler)) {
-        printf("ERROR: Columna invàlida o plena\n");
-        col = demanaTirada();
-    }
-
-    int fila = trobaFila(col, tauler);
-    tauler[fila][col] = torn;
-    esVictoria(tauler, col, fila, torn);
-}*/
 
 int ferTirada(int tauler[N][N], int torn) {
     int col = demanaTirada();
@@ -128,7 +114,7 @@ int esVictoria(int tauler[N][N], int col, int fila, int jugador) {
         esConnectaDiagonalInfDreta(tauler, col, fila, jugador) ||
         esConnectaDiagonalInfEsquerra(tauler, col, fila, jugador)) {
         dibuixaTauler(tauler);
-        printf("Victoria del jugador %i!\n", jugador);
+        printf("\nVictoria del jugador %i!\n", jugador);
         return TRUE;
     }
     return FALSE;
@@ -153,6 +139,7 @@ void imprimirTauler(Node *n) {
 }
 
 void dibuixaTauler(int tauler[N][N]) {
+    printf("\n");
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             printf(" %i ", tauler[i][j]);
