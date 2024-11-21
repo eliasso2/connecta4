@@ -175,7 +175,7 @@ int test_esConnectaHoritzontalDreta() {
 
     // Test case 1: Row does not win
     tauler[7][0] = 1;
-    if (esConnectaHoritzontalDreta(tauler, 0, 7, 1) == 0) {
+    if (esConnectaHoritzontal(tauler, 0, 7, 1) == 0) {
         printf("Test case 1 passed\n");
     } else {
         printf("Test case 1 failed\n");
@@ -187,7 +187,7 @@ int test_esConnectaHoritzontalDreta() {
     tauler[7][1] = 1;
     tauler[7][2] = 1;
     tauler[7][3] = 1;
-    if (esConnectaHoritzontalDreta(tauler, 0, 7, 1) == 1) {
+    if (esConnectaHoritzontal(tauler, 0, 7, 1) == 1) {
         printf("Test case 2 passed\n");
     } else {
         printf("Test case 2 failed\n");
@@ -199,7 +199,7 @@ int test_esConnectaHoritzontalDreta() {
     tauler[7][1] = 1;
     tauler[7][2] = 1;
     tauler[7][3] = 1;
-    if (esConnectaHoritzontalDreta(tauler, 1, 7, 1) == 0) {
+    if (esConnectaHoritzontal(tauler, 1, 7, 1) == 0) {
         printf("Test case 3 passed\n");
     } else {
         printf("Test case 3 failed\n");
@@ -211,7 +211,7 @@ int test_esConnectaHoritzontalDreta() {
     tauler[7][1] = 2;
     tauler[7][2] = 2;
     tauler[7][3] = 2;
-    if (esConnectaHoritzontalDreta(tauler, 0, 7, 1) == 0) {
+    if (esConnectaHoritzontal(tauler, 0, 7, 1) == 0) {
         printf("Test case 4 passed\n");
     } else {
         printf("Test case 4 failed\n");
@@ -280,7 +280,7 @@ int test_esConnectaDiagonalSupDreta() {
 
     // Test case 1: Diagonal does not win
     tauler[7][7] = 1;
-    if (esConnectaDiagonalSupDreta(tauler, 7, 7, 1) == 0) {
+    if (esConnectaDiagonalAsc(tauler, 7, 7, 1) == 0) {
         printf("Test case 1 passed\n");
     } else {
         printf("Test case 1 failed\n");
@@ -292,7 +292,7 @@ int test_esConnectaDiagonalSupDreta() {
     tauler[6][1] = 1;
     tauler[5][2] = 1;
     tauler[4][3] = 1;
-    if (esConnectaDiagonalSupDreta(tauler, 3, 7, 1) == 1) {
+    if (esConnectaDiagonalAsc(tauler, 3, 7, 1) == 1) {
         printf("Test case 2 passed\n");
     } else {
         printf("Test case 2 failed\n");
@@ -303,7 +303,7 @@ int test_esConnectaDiagonalSupDreta() {
     tauler[7][7] = 0;
     tauler[6][7] = 1;
 
-    if (esConnectaDiagonalSupDreta(tauler, 7, 6, 1) == 0) {
+    if (esConnectaDiagonalAsc(tauler, 7, 6, 1) == 0) {
         printf("Test case 3 passed\n");
     } else {
         printf("Test case 3 failed\n");
@@ -314,7 +314,7 @@ int test_esConnectaDiagonalSupDreta() {
     tauler[1][0] = 0;
     tauler[0][0] = 1;
 
-    if (esConnectaDiagonalSupDreta(tauler, 0, 0, 1) == 0) {
+    if (esConnectaDiagonalAsc(tauler, 0, 0, 1) == 0) {
         printf("Test case 4 passed\n");
     } else {
         printf("Test case 4 failed\n");
@@ -326,7 +326,7 @@ int test_esConnectaDiagonalSupDreta() {
     tauler[6][1] = 2;
     tauler[5][2] = 2;
     tauler[4][3] = 2;
-    if (esConnectaDiagonalSupDreta(tauler, 0, 7, 1) == 0) {
+    if (esConnectaDiagonalAsc(tauler, 0, 7, 1) == 0) {
         printf("Test case 5 passed\n");
     } else {
         printf("Test case 5 failed\n");
@@ -343,7 +343,7 @@ int test_esConnectaDiagonalSupEsquerra() {
 
     // Test case 1: Diagonal does not win
     tauler[7][0] = 1;
-    if (esConnectaDiagonalSupEsquerra(tauler, 0, 7, 1) == 0) {
+    if (esConnectaDiagonalDesc(tauler, 0, 7, 1) == 0) {
         printf("Test case 1 passed\n");
     } else {
         printf("Test case 1 failed\n");
@@ -355,7 +355,7 @@ int test_esConnectaDiagonalSupEsquerra() {
     tauler[6][1] = 1;
     tauler[5][2] = 1;
     tauler[4][3] = 1;
-    if (esConnectaDiagonalSupEsquerra(tauler, 3, 7, 1) == 1) {
+    if (esConnectaDiagonalDesc(tauler, 3, 7, 1) == 1) {
         printf("Test case 2 passed\n");
     } else {
         printf("Test case 2 failed\n");
@@ -366,7 +366,7 @@ int test_esConnectaDiagonalSupEsquerra() {
     tauler[7][0] = 0;
     tauler[6][0] = 1;
 
-    if (esConnectaDiagonalSupEsquerra(tauler, 0, 6, 1) == 0) {
+    if (esConnectaDiagonalDesc(tauler, 0, 6, 1) == 0) {
         printf("Test case 3 passed\n");
     } else {
         printf("Test case 3 failed\n");
@@ -377,7 +377,7 @@ int test_esConnectaDiagonalSupEsquerra() {
     tauler[1][7] = 0;
     tauler[0][7] = 1;
 
-    if (esConnectaDiagonalSupEsquerra(tauler, 7, 0, 1) == 0) {
+    if (esConnectaDiagonalDesc(tauler, 7, 0, 1) == 0) {
         printf("Test case 4 passed\n");
     } else {
         printf("Test case 4 failed\n");
@@ -390,7 +390,7 @@ int test_esConnectaDiagonalSupEsquerra() {
     tauler[5][2] = 2;
     tauler[4][3] = 2;
 
-    if(esConnectaDiagonalSupEsquerra(tauler, 3, 7, 1) == 0) {
+    if(esConnectaDiagonalDesc(tauler, 3, 7, 1) == 0) {
         printf("Test case 5 passed\n");
     } else {
         printf("Test case 5 failed\n");
